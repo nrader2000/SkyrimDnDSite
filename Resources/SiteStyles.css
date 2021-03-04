@@ -83,24 +83,22 @@ img{
 }
 
 .downloadlink{
-    text-align: center;
-    padding: 10%;
+    padding: 0;
+}
+
+.downloadlink a{
+    color: white;
 }
 
 .defaultlink{
     padding: 1%;
 }
 
-.downloadlink a{
-    color: white;
-    font-size: 200%;
-}
-
 .defaultlink a{
     color: white;
 }
 
-.downloadlink a:hover:not(.active) {background-color: rgba(1,1,1,0.5); padding: 5%; border-radius: 3em;}
+.downloadlink a:hover:not(.active) {background-color: rgba(1,1,1,0.5); padding: 0.5%; border-radius: 3em;}
 
 .defaultlink a:hover:not(.active) {background-color: rgba(1,1,1,0.5); padding: 2%; border-radius: 3em;}
 
