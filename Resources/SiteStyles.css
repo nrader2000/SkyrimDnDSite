@@ -5,16 +5,12 @@ body{
     font-size: large;
 }
 
-h1{
-    height: 3em;
+.header{
+    padding: 3%;
+    border-radius: 3em;
     text-align: center;
-    padding-top: 3.75%;
-    padding-bottom: 1%;
-    font-size: 3em;
-    color: white;
-    border-radius: 1em;
     background-image: url("../Images/snow\ ruin.png");
-    background-repeat: no-repeat;
+    color: white;
 }
 
 hr{
