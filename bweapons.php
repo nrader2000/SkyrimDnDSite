@@ -1,5 +1,9 @@
 <?php
-    require_once("Resources/database_access.php");
+     require_once("Resources/database_access.php");
+
+    //Get data from weapons table
+    $query = "SELECT * FROM Bound_Weapons";
+    $bweapons = $db->query($query);
 ?>
 <!DOCTYPE html>
     <html>
@@ -31,10 +35,20 @@
             <hr>
             <!-- Main Content of Page -->
             <div class="row">
-            <div class="columncontent">
-              <p>Select one of the table links to start looking at some data!</p>
-            </div>
-            <div class="vl"></div>
+             <table>
+                <tr>
+                    <th>Bound Weapon Name</th>
+                    <th>Bound Weapon Damage</th>
+                    <th>Magicka Cost</th>
+                </tr>
+                <?php foreach ($bweapons as $bweapon) : ?>
+                <tr>
+                    <td><?php echo $bweapon['BWeaponName']; ?></td>
+                    <td><?php echo $bweapon['BWeaponDamage']; ?></td>
+                    <td><?php echo $bweapon['MagickaCost']; ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
             <div>
                 <ol>
                   <p>Tables</p>

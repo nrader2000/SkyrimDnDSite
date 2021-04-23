@@ -1,5 +1,9 @@
 <?php
-    require_once("Resources/database_access.php");
+     require_once("Resources/database_access.php");
+
+    //Get data from weapons table
+    $query = "SELECT * FROM Unique_Weapons";
+    $uweapons = $db->query($query);
 ?>
 <!DOCTYPE html>
     <html>
@@ -31,10 +35,25 @@
             <hr>
             <!-- Main Content of Page -->
             <div class="row">
-            <div class="columncontent">
-              <p>Select one of the table links to start looking at some data!</p>
-            </div>
-            <div class="vl"></div>
+             <table>
+                <tr>
+                    <th>Unique Weapon Name</th>
+                    <th>Unique Weapon Damage</th>
+                    <th>Unique Weapon Weight</th>
+                    <th>Unique Weapon Value</th>
+                    <th>Unique Weapon Description</th>       
+                </tr>
+                <?php foreach ($uweapons as $uweapon) : ?>
+                <tr>
+                    <td><?php echo $uweapon['UWeaponName']; ?></td>
+                    <td><?php echo $uweapon['UWeaponDamage']; ?></td>
+                    <td><?php echo $uweapon['UWeaponWeight']; ?></td>
+                    <td><?php echo $uweapon['UWeaponValue']; ?></td>
+                    <td><?php echo $uweapon['UWeaponDesc']; ?></td>
+                    
+                </tr>
+                <?php endforeach; ?>
+            </table>
             <div>
                 <ol>
                   <p>Tables</p>

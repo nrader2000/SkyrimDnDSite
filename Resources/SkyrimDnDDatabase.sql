@@ -450,8 +450,8 @@ INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Pickaxe',5,10,5,'N/A(Can mine ore,obviously not a combat ability)');
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Poachers Axe',5,10,32,'Does 3 points of extra damage to animals(and only animals)(Can chop wood,obviously not a combat ability)');
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Woodcutters Axe',5,10,5,'N/A(Can chop wood,obviously not a combat ability)');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Fork',1,1,5,'N/A');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Knife',2,1,1,'N/A');
+INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Fork',1,1,5,'None');
+INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Knife',2,1,1,'None');
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Ancient Nord Battle Axe',18,22,28,'None',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Drainblood Battleaxe',21,5,266,'Absorb 15 points of health(40 charges)',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Headmans Axe',17,11,15,'None',1);
