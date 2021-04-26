@@ -14,12 +14,12 @@
             <link rel="stylesheet" href="Resources/SiteStyles.css"> 
         </head>
         <body>
-            <!-- Use of the wrapper class around the whole body content -->
-            <div id="wrapper">
             <!-- Title for homepage -->
             <div class="header">
                 <h1><strong>Database</strong></h1>
             </div>
+            <!-- Use of the wrapper class around the whole body content -->
+            <div id="wrapper">
             <hr>
             <!-- Navagation Section -->
             <div class="topnav">
@@ -51,7 +51,7 @@
             </table>
             <div>
                 <ol>
-                  <p>Tables</p>
+                  <h3>Tables</h3>
                   <li><a name="boundweaponchoice" href="bweapons.php">Bound Weapons</a></li>
                   <li><a name="staffchoice" href="staffs.php">Staffs</a></li>
                   <li><a name="uniqueweaponchoice" href="uweapons.php">Unique Weapons</a></li>
@@ -60,10 +60,11 @@
             </div>
             <hr>
             </div>
+            </div>
+            <div style="height:280px;"></div>
             <!-- Footer w/ Copyright -->
             <div class="footer">
                 <hr><p>Copyright &copy; 2021 Nick Rader</p>
-            </div>
             </div>
         </body>
     </html>

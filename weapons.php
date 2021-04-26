@@ -1,9 +1,39 @@
 <?php
      require_once("Resources/database_access.php");
-
-    //Get data from weapons table
-    $query = "SELECT * FROM Weapons";
+     
+     // Get category ID
+    if(!isset($category_id)) {
+        $category_id = $_GET['category_id'];
+        if (!isset($category_id)) {
+            $category_id = 1;
+        }
+    }
+    // Get sort
+    if(!isset($sort)) {
+        $sort = $_GET['sort'];
+        if (!isset($sort)) {
+            $sort = 0;
+        }
+    }
+    
+    // Get name for current category
+    $query = "SELECT * FROM Weapon_Types
+              WHERE WeaponTypeID = $category_id";
+    $category = $db->query($query);
+    $category = $category->fetch();
+    $category_name = $category['WeaponTypeName'];
+    
+    // Get all categories
+    $query = 'SELECT * FROM Weapon_Types
+              ORDER BY WeaponTypeID';
+    $categories = $db->query($query);
+    
+    // Get products for selected category
+    $query = "SELECT * FROM Weapons
+              WHERE WeaponTypeID = $category_id
+              ORDER BY WeaponTypeID";
     $weapons = $db->query($query);
+              
 ?>
 <!DOCTYPE html>
     <html>
@@ -15,11 +45,11 @@
         </head>
         <body>
             <!-- Use of the wrapper class around the whole body content -->
-            <div id="wrapper">
-            <!-- Title for homepage -->
             <div class="header">
                 <h1><strong>Database</strong></h1>
             </div>
+            <div id="wrapper">
+            <!-- Title for homepage -->
             <hr>
             <!-- Navagation Section -->
             <div class="topnav">
@@ -35,7 +65,17 @@
             <hr>
             <!-- Main Content of Page -->
             <div class="row">
-            <table>
+              <div>
+                <ol>
+                  <h3>Weapon Types</h3>
+                  <?php foreach ($categories as $category) : ?>
+                    <li><a href="?category_id=<?php echo $category['WeaponTypeID']; ?>">
+                        <?php echo $category['WeaponTypeName']; ?></a>
+                    </li>
+                  <?php endforeach; ?>
+                </ol>
+              </div>
+              <table>
                 <tr>
                   <th>Weapon Name</th>
                   <th>Weapon Damage</th>
@@ -53,7 +93,7 @@
             </table>
             <div>
                 <ol>
-                  <p>Tables</p>
+                  <h3>Tables</h3>
                   <li><a name="boundweaponchoice" href="bweapons.php">Bound Weapons</a></li>
                   <li><a name="staffchoice" href="staffs.php">Staffs</a></li>
                   <li><a name="uniqueweaponchoice" href="uweapons.php">Unique Weapons</a></li>
@@ -62,10 +102,11 @@
             </div>
             <hr>
             </div>
+            </div>
+            <div class="push"></div>
             <!-- Footer w/ Copyright -->
             <div class="footer">
                 <hr><p>Copyright &copy; 2021 Nick Rader</p>
-            </div>
             </div>
         </body>
     </html>

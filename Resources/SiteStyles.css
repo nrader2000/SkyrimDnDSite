@@ -1,13 +1,17 @@
 body{
-    background-color: rgba(75, 75, 75,1);
+    background-color: rgba(71, 71, 83,1);
+    display: flexbox;
     color: white;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
 }
 
 .header{
-    padding: 3%;
-    border-radius: 3em;
+    padding: 1%;
+    margin: 0;
     text-align: center;
     background-image: url("../Images/snow\ ruin.png");
     color: white;
@@ -28,7 +32,8 @@ hr{
 }
 
 ol {
-  border-left: 2px solid rgba(51, 204, 204,0.5);
+  margin: -10%;
+  background: 2px solid rgba(51, 204, 204,0.5);
   list-style: none;
   text-align: center;
 }
@@ -99,7 +104,7 @@ img{
 }
 
 table{
-    width: 70%;
+    width: 100%
     font-size: 100%;
     margin-left: 10%;
     margin-right: 10%;
@@ -154,13 +159,15 @@ tr:hover {background-color: rgba(51, 204, 204,0.5);}
 
 .defaultlink a:hover:not(.active) {background-color: rgba(1,1,1,0.5); padding: 2%; border-radius: 3em;}
 
-.footer { 	
-    border-radius: 0.2em;
+.footer { 
+    padding: 0.5%;
     font-size: small;
     text-align: center;
-    margin-top: auto;
-    padding-bottom: 0.5%;
     font-style: italic;
     color: white;
 	background-color: rgba(36,36,36,1);
+}
+
+.push{
+    height: 150px;
 }

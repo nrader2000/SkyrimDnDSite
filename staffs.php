@@ -1,8 +1,30 @@
 <?php
      require_once("Resources/database_access.php");
 
-    //Get data from weapons table
-    $query = "SELECT * FROM Staffs";
+// Get category ID
+    if(!isset($category_id)) {
+        $category_id = $_GET['category_id'];
+        if (!isset($category_id)) {
+            $category_id = 1;
+        }
+    }
+    
+    // Get name for current category
+    $query = "SELECT * FROM Staff_Types
+              WHERE StaffTypeID = $category_id";
+    $category = $db->query($query);
+    $category = $category->fetch();
+    $category_name = $category['StaffTypeName'];
+    
+    // Get all categories
+    $query = 'SELECT * FROM Staff_Types
+              ORDER BY StaffTypeID';
+    $categories = $db->query($query);
+    
+    // Get products for selected category
+    $query = "SELECT * FROM Staffs
+              WHERE StaffTypeID = $category_id
+              ORDER BY StaffTypeID";
     $staffs = $db->query($query);
 ?>
 <!DOCTYPE html>
@@ -14,12 +36,12 @@
             <link rel="stylesheet" href="Resources/SiteStyles.css"> 
         </head>
         <body>
-            <!-- Use of the wrapper class around the whole body content -->
-            <div id="wrapper">
             <!-- Title for homepage -->
             <div class="header">
                 <h1><strong>Database</strong></h1>
             </div>
+            <!-- Use of the wrapper class around the whole body content -->
+            <div id="wrapper">
             <hr>
             <!-- Navagation Section -->
             <div class="topnav">
@@ -35,6 +57,16 @@
             <hr>
             <!-- Main Content of Page -->
             <div class="row">
+            <div>
+                <ol>
+                  <h3>Staff Magic Types</h3>
+                  <?php foreach ($categories as $category) : ?>
+                    <li><a href="?category_id=<?php echo $category['StaffTypeID']; ?>">
+                        <?php echo $category['StaffTypeName']; ?></a>
+                    </li>
+                  <?php endforeach; ?>
+                </ol>
+              </div>
             <table>
                 <tr>
                     <th>Staff Name</th>
@@ -53,7 +85,7 @@
             </table>
             <div>
                 <ol>
-                  <p>Tables</p>
+                  <h3>Tables</h3>
                   <li><a name="boundweaponchoice" href="bweapons.php">Bound Weapons</a></li>
                   <li><a name="staffchoice" href="staffs.php">Staffs</a></li>
                   <li><a name="uniqueweaponchoice" href="uweapons.php">Unique Weapons</a></li>
@@ -62,10 +94,11 @@
             </div>
             <hr>
             </div>
+            </div>
+            <div class="push"></div>
             <!-- Footer w/ Copyright -->
             <div class="footer">
                 <hr><p>Copyright &copy; 2021 Nick Rader</p>
-            </div>
             </div>
         </body>
     </html>

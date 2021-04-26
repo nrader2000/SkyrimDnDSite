@@ -10,12 +10,12 @@
             <link rel="stylesheet" href="Resources/SiteStyles.css"> 
         </head>
         <body>
-            <!-- Use of the wrapper class around the whole body content -->
-            <div id="wrapper">
             <!-- Title for homepage -->
             <div class="header">
                 <h1><strong>Database</strong></h1>
             </div>
+            <!-- Use of the wrapper class around the whole body content -->
+            <div id="wrapper">
             <hr>
             <!-- Navagation Section -->
             <div class="topnav">
@@ -46,10 +46,12 @@
             </div>
             <hr>
             </div>
+            </div>
+            <hr>
+            <div class="push"></div>
             <!-- Footer w/ Copyright -->
             <div class="footer">
                 <hr><p>Copyright &copy; 2021 Nick Rader</p>
-            </div>
             </div>
         </body>
     </html>
