@@ -1,14 +1,35 @@
 <?php
      require_once("Resources/database_access.php");
-
-    //Get data from weapons table
-    $query = "SELECT * FROM Unique_Weapons";
+     
+     // Get category ID
+    if(!isset($category_id)) {
+        $category_id = $_GET['category_id'];
+        if (!isset($category_id)) {
+            $category_id = 1;
+        }
+    }
+    // Get name for current category
+    $query = "SELECT * FROM Weapon_Types
+              WHERE WeaponTypeID = $category_id";
+    $category = $db->query($query);
+    $category = $category->fetch();
+    $category_name = $category['WeaponTypeName'];
+    
+    // Get all categories
+    $query = 'SELECT * FROM Weapon_Types
+              ORDER BY WeaponTypeID';
+    $categories = $db->query($query);
+    
+    // Get products for selected category
+    $query = "SELECT * FROM Unique_Weapons
+              WHERE WeaponTypeID = $category_id
+              ORDER BY WeaponTypeID";
     $uweapons = $db->query($query);
 ?>
 <!DOCTYPE html>
     <html>
         <head>
-            <title>SkyrimDnD</title>
+            <title>ESTT</title>
 	        <link rel="site icon"  type="image/png"  href="Images/SkyrimDnD-Symbol.png">
             <!-- Inclusion of the css style sheet -->
             <link rel="stylesheet" href="Resources/SiteStyles.css"> 
@@ -35,6 +56,21 @@
             <hr>
             <!-- Main Content of Page -->
             <div class="row">
+              <div class="column">
+                <h2><?php echo $category['WeaponTypeName'];?><h2>
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <ol>
+                  <h3>Weapon Types</h3>
+                  <?php foreach ($categories as $category) : ?>
+                    <li><a href="?category_id=<?php echo $category['WeaponTypeID']; ?>">
+                        <?php echo $category['WeaponTypeName']; ?></a>
+                    </li>
+                  <?php endforeach; ?>
+                </ol>
+              </div>
              <table>
                 <tr>
                     <th>Unique Weapon Name</th>
@@ -57,8 +93,12 @@
             <div>
                 <ol>
                   <h3>Tables</h3>
+                  <li><a name="armorchoice" href="armors.php">Armors</a></li>
                   <li><a name="boundweaponchoice" href="bweapons.php">Bound Weapons</a></li>
+                  <li><a name="shieldchoice" href="shields.php">Shields</a></li>
                   <li><a name="staffchoice" href="staffs.php">Staffs</a></li>
+                  <li><a name="uniquearmorchoice" href="uarmors.php">Unique Armors</a></li>
+                  <li><a name="uniqueshieldchoice" href="ushields.php">Unique Shields</a></li>
                   <li><a name="uniqueweaponchoice" href="uweapons.php">Unique Weapons</a></li>
                   <li><a name="weaponchoice" href="weapons.php">Weapons</a></li>
                 </ol> 
@@ -69,7 +109,7 @@
             <div class="push"></div>
             <!-- Footer w/ Copyright -->
             <div class="footer">
-                <hr><p>Copyright &copy; 2021 Nick Rader</p>
+                <hr><p>Copyright &copy; <?php echo date("Y"); ?> ESTT</p>
             </div>
         </body>
     </html>

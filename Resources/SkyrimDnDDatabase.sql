@@ -89,7 +89,7 @@ CREATE TABLE Unique_Clothes
   UClothesDesc VARCHAR(255) NOT NULL,
   PRIMARY KEY (UClothesID)
 );
-
+*/
 CREATE TABLE Armor_Types
 (
   ArmorTypeID INT NOT NULL AUTO_INCREMENT,
@@ -113,7 +113,7 @@ CREATE TABLE Unique_Armors
 CREATE TABLE Shields
 (
   ShieldID INT NOT NULL AUTO_INCREMENT,
-  ShieldName INT NOT NULL,
+  ShieldName VARCHAR(255) NOT NULL,
   ShieldDefense INT NOT NULL,
   ShieldWeight INT NOT NULL,
   ShieldValue INT NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE Unique_Shields
   PRIMARY KEY (UShieldID),
   FOREIGN KEY (ArmorTypeID) REFERENCES Armor_Types(ArmorTypeID)
 );
-
+/*
 CREATE TABLE Shouts
 (
   ShoutID INT NOT NULL AUTO_INCREMENT,
@@ -287,7 +287,7 @@ CREATE TABLE Spells
   FOREIGN KEY (SpellTypeID) REFERENCES Spell_Types(SpellTypeID),
   FOREIGN KEY (SpellDiffID) REFERENCES Spell_Difficulties(SpellDiffID)
 );
-
+*/
 CREATE TABLE Armors
 (
   ArmorID INT NOT NULL AUTO_INCREMENT,
@@ -299,7 +299,7 @@ CREATE TABLE Armors
   PRIMARY KEY (ArmorID),
   FOREIGN KEY (ArmorTypeID) REFERENCES Armor_Types(ArmorTypeID)
 );
-
+/*
 CREATE TABLE Powers
 (
   PowerID INT NOT NULL AUTO_INCREMENT,
@@ -384,6 +384,14 @@ CREATE TABLE Races
   FOREIGN KEY (AbilityID) REFERENCES Abilities(AbilityID)
 );
 */
+
+CREATE TABLE Emails
+(
+  EmailID INT NOT NULL AUTO_INCREMENT,
+  Email VARCHAR(255),
+  PRIMARY KEY (EmailID)
+);
+
 -- Data Insertion
 
 -- Data for Weapon_Types Table
@@ -396,6 +404,7 @@ INSERT INTO Weapon_Types (WeaponTypeName) VALUES ('Maces');
 INSERT INTO Weapon_Types (WeaponTypeName) VALUES ('Swords');
 INSERT INTO Weapon_Types (WeaponTypeName) VALUES ('War Axes');
 INSERT INTO Weapon_Types (WeaponTypeName) VALUES ('Warhammers');
+INSERT INTO Weapon_Types (WeaponTypeName) VALUES ('Other');
 
 -- Data for Staff_Types Table
 INSERT INTO Staff_Types (StaffTypeName) VALUES ('Alteration');
@@ -445,19 +454,14 @@ INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Forsworn War Axe',11,15,90,'None',8);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Nord Hero War Axe',12,11,165,'None',8);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Okin',12,11,150,'Target takes 10 points of frost damage to health and stamina(40 charges)',8);
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Hoarfrost',5,10,946,'Target takes 15 points of frost damage to health and stamina, roll 1d6 for a chance to immobilize target for 1 turn(40 charges)(Can mine ore,obviously not a combat ability)');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Notched Pickaxe',5,10,150,'Target takes 5 points of shock damage to health and magicka(40 charges)(Can mine ore,obviously not a combat ability)');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Pickaxe',5,10,5,'N/A(Can mine ore,obviously not a combat ability)');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Poachers Axe',5,10,32,'Does 3 points of extra damage to animals(and only animals)(Can chop wood,obviously not a combat ability)');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Woodcutters Axe',5,10,5,'N/A(Can chop wood,obviously not a combat ability)');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Fork',1,1,5,'None');
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc) VALUES ('Knife',2,1,1,'None');
+INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Hoarfrost',5,10,946,'Target takes 15 points of frost damage to health and stamina, roll 1d6 for a chance to immobilize target for 1 turn(40 charges)(Can mine ore,obviously not a combat ability)',10);
+INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Notched Pickaxe',5,10,150,'Target takes 5 points of shock damage to health and magicka(40 charges)(Can mine ore,obviously not a combat ability)',10);
+INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Poachers Axe',5,10,32,'Does 3 points of extra damage to animals(and only animals)(Can chop wood,obviously not a combat ability)',10);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Ancient Nord Battle Axe',18,22,28,'None',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Drainblood Battleaxe',21,5,266,'Absorb 15 points of health(40 charges)',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Headmans Axe',17,11,15,'None',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Nord Hero Battle Axe',21,20,300,'None',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Wuuthrad',25,25,2000,'Does 10 additional damage against elves',1);
-INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Rueful Axe',22,10,1183,'Deals 20 points of damage to stamina(40 charges)',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Rueful Axe',22,10,1183,'Deals 20 points of damage to stamina(40 charges)',1);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Ancient Nord Greatsword',17,18,35,'None',5);
 INSERT INTO Unique_Weapons (UWeaponName,UWeaponDamage,UWeaponWeight,UWeaponValue,UWeaponDesc,WeaponTypeID) VALUES ('Bloodskal Blade',21,16,1250,'Upon a successful power attack, release an energy blast to do an additional 30 damage to anyone in front the wielder(40 charges)',5);
@@ -593,7 +597,10 @@ INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponType
 INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Daedric Warhammer',27,30,4000,9);
 INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Dragonbone Warhammer',28,33,4275,9);
 INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Skyforge Steel Warhammer',23,25,175,9);
-INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Stalhrim Warhammer',26,29,2850,9);
+INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Pickaxe',5,10,5,10);
+INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Woodcutters Axe',5,10,5,10);
+INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Fork',1,1,5,10);
+INSERT INTO Weapons (WeaponName,WeaponDamage,WeaponWeight,WeaponValue,WeaponTypeID) VALUES ('Knife',2,1,1,10);
 
 -- Data for Staffs Table
 INSERT INTO Staffs (StaffName,StaffWeight,StaffValue,StaffDesc,StaffTypeID) VALUES ('Staff of Magelight',8,239,'Creates a ball of light in a casted area for a certain amount of time(40 charges)',1);
@@ -647,3 +654,99 @@ INSERT INTO Staffs (StaffName,StaffWeight,StaffValue,StaffDesc) VALUES ('Sanguin
 INSERT INTO Staffs (StaffName,StaffWeight,StaffValue,StaffDesc) VALUES ('Wabbajak',10,1211,'Deals 27 Damage to Target; A blast from this staff has unpredictable effects(50 charges)');
 INSERT INTO Staffs (StaffName,StaffWeight,StaffValue,StaffDesc) VALUES ('Skull of Corruption',10,1680,'Deals 20(up to 50) points of damage, amount of damage goes up by 10 for every dream collected from sleeping people(max 3 people)(50 charges)');
 
+-- Data for Armor_Types Table
+INSERT INTO Armor_Types (ArmorTypeName) VALUES ('Light');
+INSERT INTO Armor_Types (ArmorTypeName) VALUES ('Heavy');
+
+-- Data for Armors Table
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Hide',5,5,50,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Worn Shrouded',5,6,80,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Fur',6,6,50,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Guard(Various)',6,6,75,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Studded',7,6,75,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Imperial Light',7,5,65,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Studded Imperial',7,6,125,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Vampire',8,5,175,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Elven Light',9,4,125,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Leather',9,6,125,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Skaal',9,5,100,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Stormcloak Officer',10,8,35,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Forsworn',11,6,100,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Dawnguard',11,6,220,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Elven',11,6,225,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Shrouded',11,7,373,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Chitin',12,4,240,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Vampire Royal',12,9,250,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Scaled',13,6,350,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Blackguards',13,7,2079,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Thieves Guild',13,7,665,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Elven Guilded',15,4,550,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Guild Masters',16,10,1779,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Glass',16,7,900,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Ancient Falmer',16,7,900,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Stalhrim Light',17,7,925,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Ancient Shrouded',18,5,617,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Dragonscale',20,10,1500,1);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Imperial',8,35,100,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Iron',8,30,125,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Banded Iron',8,35,200,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Falmer',11,20,275,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Steel',12,25,275,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Wolf',12,20,55,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Bonemold',13,34,290,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Dwarven',14,45,400,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Dawnguard Heavy',14,42,425,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Falmer Hardened',16,40,250,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Improved Bonemold',18,43,290,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Chitin Heavy',20,35,650,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Orcish',22,35,1000,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Steel Plate',22,38,625,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Ebony',26,38,1500,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Falmer Heavy',26,35,1200,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Nordic Carved',26,37,1600,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Blades',26,45,400,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Dragonplate',28,40,2125,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Stalhrim Heavy',28,38,2200,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Ancient Nord',30,28,235,2);
+INSERT INTO Armors (ArmorName,ArmorDefense,ArmorWeight,ArmorValue,ArmorTypeID) VALUES ('Daedric',32,50,3200,2);
+
+-- Data for Unique_Armors Table
+INSERT INTO Unique_Armors (UArmorName,UArmorDefense,UArmorWeight,UArmorValue,UArmorDesc,ArmorTypeID) VALUES ('Saviors Hide',9,6,5012,'This gear gives an additional 5 points of magic resist and 10 points of poison resist',1);
+INSERT INTO Unique_Armors (UArmorName,UArmorDefense,UArmorWeight,UArmorValue,UArmorDesc,ArmorTypeID) VALUES ('Nightingale',14,12,1553,'This gear gives 30 additional points of stamina and 10 points of frost resist',1);
+INSERT INTO Unique_Armors (UArmorName,UArmorDefense,UArmorWeight,UArmorValue,UArmorDesc,ArmorTypeID) VALUES ('Deathbrand',17,7,2433,'This gear gives 50 additional points of stamina',1);
+INSERT INTO Unique_Armors (UArmorName,UArmorDefense,UArmorWeight,UArmorValue,UArmorDesc,ArmorTypeID) VALUES ('Ebony Mail',27,28,5000,'1 additional sneak dice, 5 points of poison damage to any opponent nearby a turn',2);
+
+-- Data for Shields Table
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Hide Shield',5, 4 ,25 ,1);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Imperial Light Shield',6, 4, 40 ,1);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Elven Shield',7, 4, 115 ,1);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Chitin Shield',9, 8, 215 ,1);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Glass Shield',10, 6, 450 ,1);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Dragonscale Shield',12, 6, 750 ,1);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Stalhrim Shield',13, 10, 600 ,1);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Dented Iron Shield',6, 12, 30 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Guard Shield',6, 6, 40 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Imperial Shield',7, 12, 50 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Iron Shield',8, 12, 60 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Bonemold Shield',10, 8, 95 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Banded Iron Shield',10, 12, 100 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Steel Shield',12, 12, 150 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Chitin Heavy',12, 12, 200 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Dwarven Shield',13, 12, 225 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Blades Shield',14, 12, 225 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Dawnguard Shield',14, 10, 240 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Imporved Bonemold Shield',15, 11, 95 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Nordic Shield',15, 10, 335 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Falmer Shield',15, 15, 10 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Orcish Shield',16, 14, 500 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Ebony Shield',17, 14, 750 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Dragonplate Shield',18, 10, 1050 ,2);
+INSERT INTO Shields (ShieldName, ShieldDefense, ShieldWeight, ShieldValue , ArmorTypeID) VALUES ('Daedric Shield',20, 15, 1600 ,2);
+
+-- Data for Unique_Shields Table 
+INSERT INTO Unique_Shields (UShieldName , UShieldDefense , UShieldWeight , UShieldValue , UShieldDesc , ArmorTypeID) VALUES ('Aetherial Shield',14, 12, 2000 ,'Bashing a target makes them become ethereal for 1 turn, giving them the ability to not attack of be attacked', 2);
+INSERT INTO Unique_Shields (UShieldName , UShieldDefense , UShieldWeight , UShieldValue , UShieldDesc , ArmorTypeID) VALUES ('Auriels Shield',17, 14, 755,'Stores energy of up to 5 blocked attacks, then dealing 5/7/9/11/13 additional bashing damage', 2);
+INSERT INTO Unique_Shields (UShieldName , UShieldDefense , UShieldWeight , UShieldValue , UShieldDesc , ArmorTypeID) VALUES ('Dawnguard Rune Shield',14, 6, 450,'10 additional bashing damage to vampires, blocking creates a sun shield damaging anyone striking it for 10 points of damage while also doing 5 points of stamina damage to the wielder', 1);
+INSERT INTO Unique_Shields (UShieldName , UShieldDefense , UShieldWeight , UShieldValue , UShieldDesc , ArmorTypeID) VALUES ('Shield of Ysgramor',16, 12, 1715,'Increases magic resist by 20%, wielder gains 20 additional points of health', 2);
+INSERT INTO Unique_Shields (UShieldName , UShieldDefense , UShieldWeight , UShieldValue , UShieldDesc , ArmorTypeID) VALUES ('Spellbreaker',19, 12, 227,'Blocking creates a powerful ward that will negate up to 50 points of damage from any spells', 2);
+INSERT INTO Unique_Shields (UShieldName , UShieldDefense , UShieldWeight , UShieldValue , UShieldDesc , ArmorTypeID) VALUES ('Targe of the Blooded',5,10,946,'Deals an additional 5 points of bashing damage, while also doing 3 points of bleed damage for 3 turns', 1);

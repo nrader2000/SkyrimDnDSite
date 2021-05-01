@@ -17,22 +17,22 @@
     }
     
     // Get name for current category
-    $query = "SELECT * FROM Weapon_Types
-              WHERE WeaponTypeID = $category_id";
+    $query = "SELECT * FROM Armor_Types
+              WHERE ArmorTypeID = $category_id";
     $category = $db->query($query);
     $category = $category->fetch();
-    $category_name = $category['WeaponTypeName'];
+    $category_name = $category['ArmorTypeName'];
     
     // Get all categories
-    $query = 'SELECT * FROM Weapon_Types
-              ORDER BY WeaponTypeID';
+    $query = 'SELECT * FROM Armor_Types
+              ORDER BY ArmorTypeID';
     $categories = $db->query($query);
     
     // Get products for selected category
-    $query = "SELECT * FROM Weapons
-              WHERE WeaponTypeID = $category_id
-              ORDER BY WeaponTypeID";
-    $weapons = $db->query($query);
+    $query = "SELECT * FROM Unique_Shields
+              WHERE ArmorTypeID = $category_id
+              ORDER BY ArmorTypeID";
+    $ushields = $db->query($query);
               
 ?>
 <!DOCTYPE html>
@@ -66,33 +66,35 @@
             <!-- Main Content of Page -->
             <div class="row">
               <div class="column">
-                <h2><?php echo $category['WeaponTypeName'];?><h2>
+                <h2><?php echo $category['ArmorTypeName'];?> Shields<h2>
               </div>
             </div>
             <div class="row">
               <div>
                 <ol>
-                  <h3>Weapon Types</h3>
+                  <h3>Armor Types</h3>
                   <?php foreach ($categories as $category) : ?>
-                    <li><a href="?category_id=<?php echo $category['WeaponTypeID']; ?>">
-                        <?php echo $category['WeaponTypeName']; ?></a>
+                    <li><a href="?category_id=<?php echo $category['ArmorTypeID']; ?>">
+                        <?php echo $category['ArmorTypeName']; ?></a>
                     </li>
                   <?php endforeach; ?>
                 </ol>
               </div>
               <table>
                 <tr>
-                  <th>Weapon Name</th>
-                  <th>Weapon Damage</th>
-                  <th>Weapon Weight</th>
-                  <th>Weapon Value</th>
+                  <th>Unique Shield Name</th>
+                  <th>Unique Shield Defense</th>
+                  <th>Unique Shield Weight</th>
+                  <th>Unique Shield Value</th>
+                  <th>Unique Shield Description</th>
                 </tr>
-                <?php foreach ($weapons as $weapon) : ?>
+                <?php foreach ($ushields as $ushield) : ?>
                 <tr>
-                    <td><?php echo $weapon['WeaponName']; ?></td>
-                    <td><?php echo $weapon['WeaponDamage']; ?></td>
-                    <td><?php echo $weapon['WeaponWeight']; ?></td>
-                    <td><?php echo $weapon['WeaponValue']; ?></td>
+                    <td><?php echo $ushield['UShieldName']; ?></td>
+                    <td><?php echo $ushield['UShieldDefense']; ?></td>
+                    <td><?php echo $ushield['UShieldWeight']; ?></td>
+                    <td><?php echo $ushield['UShieldValue']; ?></td>
+                    <td><?php echo $ushield['UShieldDesc']; ?></td>
                 </tr>
                 <?php endforeach; ?>
             </table>
